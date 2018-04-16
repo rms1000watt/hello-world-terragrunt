@@ -1,0 +1,7 @@
+{
+  "iam_groups": [
+    "admin",
+    "dev",
+    "qa"
+  ]
+}
