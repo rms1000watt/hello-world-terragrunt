@@ -31,13 +31,30 @@ done
 export AWS_PROFILE=org-x
 cd orgs/org-x
 
-# Plan IAM configuration
+# Handle IAM (users/groups/policies)
 cd global/iam
 terragrunt plan
+terragrunt apply
 
-# Plan S3 configuration
-cd global/s3
+# Handle S3 buckets
+cd ../s3
 terragrunt plan
+terragrunt apply
+
+# Handle VPC
+cd ../../dev/vpc
+terragrunt plan
+terragrunt apply
+
+# Plan Security Groups
+cd ../sg
+terragrunt plan
+terragrunt apply
+
+# Plan hello-world-ubuntu configuration
+cd ../hello-world-ubuntu
+terragrunt plan
+terragrunt apply
 ```
 
 ## Dev
