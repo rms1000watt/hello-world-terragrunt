@@ -37,8 +37,7 @@ resource "aws_instance" "ubuntu" {
   ami                         = "${data.aws_ami.ubuntu.id}"
   key_name                    = "${var.org_name}-${var.environment}-keypair"
   vpc_security_group_ids      = ["${data.terraform_remote_state.vpc.vpc_id}"]
-  // subnet_id                   = "${aws_subnet.aiware-snet-01.id}"
-  associate_public_ip_address = false
+  subnet_id                   = "${element(data.terraform_remote_state.vpc.public_subnets, count.index)}"
   user_data                   = "${data.template_file.userdata.rendered}"
 
   tags {

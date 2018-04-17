@@ -43,3 +43,11 @@ terragrunt plan
 ## Dev
 
 Future development can use the `create-org.sh` and `create-app.sh` scripts in the `org` directory for making additional organizations and applications within organizations.
+
+### Advanced Dev
+
+The `org-x/dev/vpc` app references an internal module with a bunch of output. The output has to be copied from the internal module and recreated in the `org-x/dev/vpc` app. To extract all the output, you can run something similar to the command below.
+
+```bash
+sed 's|// output "||g' < output.tf | sed 's|" {||g' | grep -v "//" | grep . | awk '{printf "output \"%s\" {\n\tvalue = \"${module.vpc.%s}\"\n}\n", $1, $1}'
+```
