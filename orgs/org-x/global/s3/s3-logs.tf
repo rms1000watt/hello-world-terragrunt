@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "logs" {
-  bucket   = "org-x-global-logs"
+  bucket   = "${var.org_name}-${var.environment}-logs"
   acl      = "log-delivery-write"
 
   lifecycle_rule {

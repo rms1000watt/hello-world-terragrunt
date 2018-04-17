@@ -8,6 +8,7 @@ This is an example Terraform/Terragrunt repo for maintaining an organization.
 
 - [Install](#install)
 - [Run](#run)
+- [Dev](#dev)
 
 ## Install
 
@@ -38,3 +39,7 @@ terragrunt plan
 cd global/s3
 terragrunt plan
 ```
+
+## Dev
+
+Future development can use the `create-org.sh` and `create-app.sh` scripts in the `org` directory for making additional organizations and applications within organizations.

@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "images" {
-  bucket   = "org-x-global-images"
+  bucket   = "${var.org_name}-${var.environment}-images"
   acl      = "private"
 
   versioning {
