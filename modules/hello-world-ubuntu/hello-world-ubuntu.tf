@@ -31,30 +31,6 @@ data "aws_ami" "ubuntu" {
   }
 }
 
-// resource "aws_security_group" "sg" {
-//   name        = "${var.org_name}-${var.environment}-${var.module_name}-sg-0"
-//   description = "Any/Any"
-//   vpc_id      = "${data.terraform_remote_state.vpc.vpc_id}"
-
-//   ingress {
-//     from_port = 0
-//     to_port   = 0
-//     protocol  = -1
-//     cidr_blocks = ["0.0.0.0/0"]
-//   }
-
-//   egress {
-//     from_port   = 0
-//     to_port     = 0
-//     protocol    = -1
-//     cidr_blocks = ["0.0.0.0/0"]
-//   }
-
-//   tags {
-//     Name = "${var.org_name}-${var.environment}-${var.module_name}-sg-0"
-//   }
-// }
-
 resource "aws_instance" "ubuntu" {
   count                       = "${var.instance_count}"
   instance_type               = "${var.instance_type}"
