@@ -1,6 +1,6 @@
-// variable "org_name" {}
+variable "org_name" {}
 variable "aws_region" {}
-// variable "environment" {}
+variable "environment" {}
 
 provider "aws" {
   region = "${var.aws_region}"
