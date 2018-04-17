@@ -31,16 +31,40 @@ data "aws_ami" "ubuntu" {
   }
 }
 
+resource "aws_security_group" "sg" {
+  name        = "${var.org_name}-${var.environment}-${var.module_name}-sg-0"
+  description = "Any/Any"
+  vpc_id      = "${data.terraform_remote_state.vpc.vpc_id}"
+
+  ingress {
+    from_port = 0
+    to_port   = 0
+    protocol  = -1
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = -1
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags {
+    Name = "${var.org_name}-${var.environment}-${var.module_name}-sg-0"
+  }
+}
+
 resource "aws_instance" "ubuntu" {
   count                       = "${var.instance_count}"
   instance_type               = "${var.instance_type}"
   ami                         = "${data.aws_ami.ubuntu.id}"
   key_name                    = "${var.org_name}-${var.environment}-keypair"
-  vpc_security_group_ids      = ["${data.terraform_remote_state.vpc.vpc_id}"]
+  vpc_security_group_ids      = ["${aws_security_group.sg.id}"]
   subnet_id                   = "${element(data.terraform_remote_state.vpc.public_subnets, count.index)}"
   user_data                   = "${data.template_file.userdata.rendered}"
 
   tags {
-    Name = "${var.org_name}-${var.environment}-hello-world-ubuntu-${count.index}"
+    Name = "${var.org_name}-${var.environment}-${var.module_name}-${count.index}"
   }
 }

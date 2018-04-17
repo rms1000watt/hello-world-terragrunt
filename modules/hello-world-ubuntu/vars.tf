@@ -1,3 +1,7 @@
+variable "module_name" {
+  default = "hello-world-ubuntu"
+}
+
 variable "instance_count" {
   description = "The number of instances to deploy"
 }
