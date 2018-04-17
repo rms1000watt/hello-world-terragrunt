@@ -7,6 +7,6 @@ terragrunt {
   }
 }
 
-instance_count = 1
-instance_type = "t2.nano"
+instance_count   = 1
+instance_type    = "t2.nano"
 hello_world_name = "Pizza Fish"
