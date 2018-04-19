@@ -34,6 +34,20 @@ aws_profile = "$aws_profile"
 org_name    = "$org_name"
 EOF
 
+  cat << EOF > "main.tf"
+variable "org_name" {}
+variable "aws_region" {}
+variable "environment" {}
+
+provider "aws" {
+  region = "\${var.aws_region}"
+}
+
+terraform {
+  backend "s3" {}
+}
+EOF
+
   cat << EOF > "terraform.tfvars"
 terragrunt {
   remote_state {
