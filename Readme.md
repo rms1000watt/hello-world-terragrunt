@@ -77,6 +77,7 @@ terragrunt apply
 Future development can use the `create-org.sh` and `create-app.sh` scripts in the `org` directory for making additional organizations and applications within organizations.
 
 ```bash
+cd orgs
 ./create-org.sh
 ./create-app.sh org-q global global iam
 ./create-app.sh org-q us-east-1 dev vpc
