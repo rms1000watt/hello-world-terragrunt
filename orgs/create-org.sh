@@ -21,6 +21,8 @@ create-region() {
   mkdir "$region"
   cd "$region"
 
+  echo 'aws_region = "'"$region"'"' > "region.tfvars"
+
   for env in "${envs[@]}"; do
     create-env "$env"
   done
