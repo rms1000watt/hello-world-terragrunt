@@ -1,6 +1,6 @@
 terragrunt {
   terraform {
-    source = "git::git@github.com:rms1000watt/hello-world-terragrunt//modules/hello-world-ubuntu?ref=0.0.7"
+    source = "git::git@github.com:rms1000watt/hello-world-terragrunt//modules/hello-world-ubuntu?ref=0.0.8"
   }
   include {
     path = "${find_in_parent_folders()}"

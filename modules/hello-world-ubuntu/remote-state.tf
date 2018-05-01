@@ -5,7 +5,7 @@ data "terraform_remote_state" "vpc" {
   config {
     key     = "${var.aws_region}/${var.environment}/vpc/terraform.tfstate"
     bucket  = "${var.org_name}-global-terraform-state"
-    region  = "${var.aws_region}"
+    region  = "${var.aws_remote_state_region}"
     profile = "${var.aws_profile}"
   }
 }
@@ -15,7 +15,7 @@ data "terraform_remote_state" "sg" {
   config {
     key     = "${var.aws_region}/${var.environment}/sg/terraform.tfstate"
     bucket  = "${var.org_name}-global-terraform-state"
-    region  = "${var.aws_region}"
+    region  = "${var.aws_remote_state_region}"
     profile = "${var.aws_profile}"
   }
 }
