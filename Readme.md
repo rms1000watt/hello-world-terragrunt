@@ -41,17 +41,32 @@ cd ../s3
 terragrunt plan
 terragrunt apply
 
-# Handle VPC
-cd ../../dev/vpc
+# Handle VPC in us-east-1
+cd ../../us-east-1/dev/vpc
 terragrunt plan
 terragrunt apply
 
-# Plan Security Groups
+# Handle Security Groups in us-east-1
 cd ../sg
 terragrunt plan
 terragrunt apply
 
-# Plan hello-world-ubuntu configuration
+# Handle hello-world-ubuntu configuration in us-east-1
+cd ../hello-world-ubuntu
+terragrunt plan
+terragrunt apply
+
+# Handle VPC in us-west-2
+cd ../../../us-west-2/dev/vpc
+terragrunt plan
+terragrunt apply
+
+# Handle Security Groups in us-west-2
+cd ../sg
+terragrunt plan
+terragrunt apply
+
+# Handle hello-world-ubuntu configuration in us-west-2
 cd ../hello-world-ubuntu
 terragrunt plan
 terragrunt apply
@@ -61,9 +76,15 @@ terragrunt apply
 
 Future development can use the `create-org.sh` and `create-app.sh` scripts in the `org` directory for making additional organizations and applications within organizations.
 
+```bash
+./create-org.sh
+./create-app.sh org-q global global iam
+./create-app.sh org-q us-east-1 dev vpc
+```
+
 ### Advanced Dev
 
-The `org-x/dev/vpc` app references an internal module with a bunch of output. The output has to be copied from the internal module and recreated in the `org-x/dev/vpc` app. To extract all the output, you can run something similar to the command below.
+The `org-x/*/dev/vpc` app references an internal module with a bunch of output. The output has to be copied from the internal module and recreated in the `org-x/*/dev/vpc` app. To extract all the output, you can run something similar to the command below.
 
 ```bash
 sed 's|// output "||g' < output.tf | sed 's|" {||g' | grep -v "//" | grep . | awk '{printf "output \"%s\" {\n\tvalue = \"${module.vpc.%s}\"\n}\n", $1, $1}'
