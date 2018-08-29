@@ -44,7 +44,7 @@ EOF
 
 
 if [ -z "$1" ]; then echo "ERROR: \$1 (org_name) not specified. Exiting.."    && exit 1; fi
-if [ -z "$1" ]; then echo "ERROR: \$2 (region) not specified. Exiting.."      && exit 1; fi
-if [ -z "$2" ]; then echo "ERROR: \$3 (environment) not specified. Exiting.." && exit 1; fi
-if [ -z "$3" ]; then echo "ERROR: \$4 (app_name) not specified. Exiting.."    && exit 1; fi
+if [ -z "$2" ]; then echo "ERROR: \$2 (region) not specified. Exiting.."      && exit 1; fi
+if [ -z "$3" ]; then echo "ERROR: \$3 (environment) not specified. Exiting.." && exit 1; fi
+if [ -z "$4" ]; then echo "ERROR: \$4 (app_name) not specified. Exiting.."    && exit 1; fi
 create-app "$1" "$2" "$3" "$4"
